@@ -26,6 +26,7 @@ services:
     build:
       context: ./backend/django_api
       target: development
+      #target: production
     depends_on:
       - database
     volumes:

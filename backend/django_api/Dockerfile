@@ -33,6 +33,6 @@ FROM base AS production
 RUN poetry config virtualenvs.create false && \
     poetry install --no-dev --no-interaction --no-ansi
 COPY . /app/
-RUN chmod +x /app/*.sh
+RUN chmod +x /app/scripts/*.sh
 ENTRYPOINT [ "scripts/entrypoint.sh" ]
 CMD [ "scripts/start.sh", "production" ]

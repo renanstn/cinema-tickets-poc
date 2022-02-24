@@ -8,11 +8,10 @@ fi
 ENVIRONMENT=$1
 
 if [ "$ENVIRONMENT" = "development" ]; then
+    echo "Running app on development mode"
     python manage.py runserver 0.0.0.0:8000
 
 elif [ "$ENVIRONMENT" = "production" ]; then
-    uvicorn \
-        django_api.asgi:application
-        --host 0.0.0.0 \
-        --port 8000
+    echo "Running app on production mode"
+    uvicorn django_api.asgi:application --host 0.0.0.0 --port 8000
 fi
