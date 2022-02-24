@@ -20,3 +20,15 @@ services:
       # - ./apis/core_app/static:/static
     ports:
       - "8000:80"
+
+  api:
+    container_name: api
+    build:
+      context: ./backend/django_api
+      target: development
+    depends_on:
+      - database
+    volumes:
+      - ./backend/django_api:/app/
+    ports:
+      - "8000:8000"

@@ -1,0 +1,38 @@
+# =============================================================================
+# Base
+# =============================================================================
+FROM python:3.9 AS base
+ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
+RUN apt-get update && \
+    pip install --upgrade pip && \
+    pip install poetry
+WORKDIR /app
+COPY pyproject.toml poetry.lock /app/
+
+# =============================================================================
+# Development
+# =============================================================================
+FROM base AS development
+RUN poetry config virtualenvs.create false && \
+    poetry install --no-interaction --no-ansi
+COPY . /app/
+RUN chmod +x /app/scripts/*.sh
+ENV DJANGO_POSTGRES_DATABASE=postgres
+ENV DJANGO_POSTGRES_USER=postgres
+ENV DJANGO_POSTGRES_PASSWORD=postgres
+ENV DJANGO_POSTGRES_HOST=database
+ENV DJANGO_POSTGRES_PORT=5432
+ENTRYPOINT [ "scripts/entrypoint.sh" ]
+CMD [ "scripts/start.sh", "development" ]
+
+# =============================================================================
+# Production
+# =============================================================================
+FROM base AS production
+RUN poetry config virtualenvs.create false && \
+    poetry install --no-dev --no-interaction --no-ansi
+COPY . /app/
+RUN chmod +x /app/*.sh
+ENTRYPOINT [ "scripts/entrypoint.sh" ]
+CMD [ "scripts/start.sh", "production" ]
