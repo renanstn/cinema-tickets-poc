@@ -4,6 +4,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from cinema.urls import router as cinema_urls
 
 
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
     path(
         "api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"
     ),
+    path("api/cinema/", include(cinema_urls.urls)),
 ]
