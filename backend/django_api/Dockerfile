@@ -18,11 +18,6 @@ RUN poetry config virtualenvs.create false && \
     poetry install --no-interaction --no-ansi
 COPY . /app/
 RUN chmod +x /app/scripts/*.sh
-ENV DJANGO_POSTGRES_DATABASE=postgres
-ENV DJANGO_POSTGRES_USER=postgres
-ENV DJANGO_POSTGRES_PASSWORD=postgres
-ENV DJANGO_POSTGRES_HOST=database
-ENV DJANGO_POSTGRES_PORT=5432
 ENTRYPOINT [ "scripts/entrypoint.sh" ]
 CMD [ "scripts/start.sh", "development" ]
 
