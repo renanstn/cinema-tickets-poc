@@ -19,4 +19,4 @@ class Command(BaseCommand):
                 password=ADMIN_PASSWORD,
                 email="",
             )
-            self.stdout.write(f"Admin user created")
+            self.stdout.write("Admin user created")
