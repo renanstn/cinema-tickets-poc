@@ -14,10 +14,9 @@ class Command(BaseCommand):
             return
 
         if User.objects.filter(is_staff=True).count() == 0:
-            user = User.objects.create_superuser(
+            User.objects.create_superuser(
                 username=ADMIN_USERNAME,
                 password=ADMIN_PASSWORD,
                 email="",
             )
-
             self.stdout.write(f"Admin user created")
