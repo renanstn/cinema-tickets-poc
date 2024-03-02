@@ -33,3 +33,9 @@ services:
       - ./backend/django_api:/app/
     ports:
       - "8000:8000"
+    environment:
+      - DEBUG=True
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin
+      - DATABASE_URL=postgres://postgres:postgres@database:5432/postgres
+      - SECRET_KEY=secret!!!
