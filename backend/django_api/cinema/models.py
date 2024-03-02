@@ -19,3 +19,10 @@ class Room(BaseModel):
 
     def __str__(self) -> str:
         return f"{self.cinema.name} - {self.number}"
+
+
+class Movie(BaseModel):
+    name = models.CharField(max_length=255)
+
+    def __str__(self) -> str:
+        return self.name
