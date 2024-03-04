@@ -1,6 +1,14 @@
 from rest_framework import viewsets
-from cinema import models
+from rest_framework.response import Response
+
+from cinema import models, tasks
 from cinema.api import serializers
+
+
+class PingCinemaViewSet(viewsets.ViewSet):
+    def list(self, request):
+        tasks.ping_cinema.delay()
+        return Response({"message": "pong!"})
 
 
 class CinemaViewSet(viewsets.ModelViewSet):
