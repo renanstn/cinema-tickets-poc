@@ -11,3 +11,8 @@ class CinemaAdmin(BaseAdmin):
 @admin.register(models.Room)
 class RoomAdmin(BaseAdmin):
     list_display = ("number", "cinema", "capacity")
+
+
+@admin.register(models.Movie)
+class MovieAdmin(BaseAdmin):
+    list_display = ("title", "director")
