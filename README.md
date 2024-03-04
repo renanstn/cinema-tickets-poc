@@ -8,6 +8,26 @@
 [![Insomnia](https://img.shields.io/badge/Insomnia-black?style=flat&logo=insomnia&logoColor=5849BE)](https://insomnia.rest/)
 
 
+## Structure
+
+This repo represents a microservice architecture, and has the following
+structure:
+
+```
+.
+└── root/
+    ├── backend - Microservices in Django, FastAPI, etc.
+    ├── infra - Dockerfiles containing settings for databases, brokers, etc.
+    └── tools - Tool dumps, such as Insomnia.
+```
+
+## Objective
+
 This lab tries to implement a solution for a cinema tickets backend.
 
 I used for study some concepts:
+
+- Django / Django REST
+- Celery
+- Broker (RabbitMQ)
+- Microservices
