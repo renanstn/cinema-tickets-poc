@@ -1,0 +1,127 @@
+[
+    {
+        "title": "The Godfather",
+        "director": "Francis Ford Coppola",
+        "synopsis": "A classic film portraying the saga of an Italian mafia family in the United States."
+    },
+    {
+        "title": "Matrix",
+        "director": "Lana Wachowski, Lilly Wachowski",
+        "synopsis": "A man discovers that the world he knows is actually a simulation created by machines."
+    },
+    {
+        "title": "Interstellar",
+        "director": "Christopher Nolan",
+        "synopsis": "A team of astronauts embarks on an interstellar journey in search of a new home for humanity."
+    },
+    {
+        "title": "Inception",
+        "director": "Christopher Nolan",
+        "synopsis": "A thief specialized in extracting information from people's subconscious is hired to implant an idea in a businessman's mind."
+    },
+    {
+        "title": "City of God",
+        "director": "Fernando Meirelles, Kátia Lund",
+        "synopsis": "The story of two young boys growing up in one of Rio de Janeiro's most violent favelas, one becomes a photographer and the other gets involved in crime."
+    },
+    {
+        "title": "Fight Club",
+        "director": "David Fincher",
+        "synopsis": "A man discontent with his mundane life finds liberation in underground fighting."
+    },
+    {
+        "title": "The Lord of the Rings: The Fellowship of the Ring",
+        "director": "Peter Jackson",
+        "synopsis": "A hobbit is tasked with destroying a powerful ring capable of ruling the world."
+    },
+    {
+        "title": "Pulp Fiction",
+        "director": "Quentin Tarantino",
+        "synopsis": "A film that tells several interconnected stories of crime, violence, and redemption."
+    },
+    {
+        "title": "Forrest Gump",
+        "director": "Robert Zemeckis",
+        "synopsis": "The story of a simple man with below-average IQ who gets involved in various important historical events."
+    },
+    {
+        "title": "Saving Private Ryan",
+        "director": "Steven Spielberg",
+        "synopsis": "A group of soldiers is sent on a dangerous mission during World War II to rescue a paratrooper."
+    },
+    {
+        "title": "Schindler's List",
+        "director": "Steven Spielberg",
+        "synopsis": "The true story of a German businessman who saved more than a thousand Jews during the Holocaust."
+    },
+    {
+        "title": "Titanic",
+        "director": "James Cameron",
+        "synopsis": "A love story between a first-class passenger and a young artist aboard the famous ship."
+    },
+    {
+        "title": "The Lion King",
+        "director": "Roger Allers, Rob Minkoff",
+        "synopsis": "A lion cub flees home after the death of his father and eventually returns to claim his place as king."
+    },
+    {
+        "title": "Star Wars: Episode IV - A New Hope",
+        "director": "George Lucas",
+        "synopsis": "A young farm boy joins a group of rebels to fight against an oppressive galactic empire."
+    },
+    {
+        "title": "The Silence of the Lambs",
+        "director": "Jonathan Demme",
+        "synopsis": "A young FBI agent teams up with a incarcerated psychopath to catch a serial killer."
+    },
+    {
+        "title": "Pan's Labyrinth",
+        "director": "Guillermo del Toro",
+        "synopsis": "A young girl discovers a magical and dangerous world while fleeing post-Civil War Spain."
+    },
+    {
+        "title": "Spirited Away",
+        "director": "Hayao Miyazaki",
+        "synopsis": "A girl is transported to a magical world where humans are turned into animals."
+    },
+    {
+        "title": "Avatar",
+        "director": "James Cameron",
+        "synopsis": "A former Marine is sent to a distant moon and becomes involved in a conflict between humanity and the natives."
+    },
+    {
+        "title": "Rise of the Guardians",
+        "director": "Peter Ramsey",
+        "synopsis": "A group of magical heroes come together to protect the world's children from the forces of evil."
+    },
+    {
+        "title": "The Incredibles",
+        "director": "Brad Bird",
+        "synopsis": "A family of superheroes is forced to live a normal life but is called back into action to save the world."
+    },
+    {
+        "title": "Toy Story",
+        "director": "John Lasseter",
+        "synopsis": "A group of toys comes to life when their owners are not around and embarks on an adventure to find their lost owner."
+    },
+    {
+        "title": "Wall-E",
+        "director": "Andrew Stanton",
+        "synopsis": "A lonely cleaning robot in the future finds a new purpose when he encounters another robot and sets out on a journey through space."
+    },
+    {
+        "title": "The Lion King",
+        "director": "Jon Favreau",
+        "synopsis": "A live-action retelling of the classic Disney animation, portraying Simba's journey to reclaim his place as king."
+    },
+    {
+        "title": "Interstellar",
+        "director": "Christopher Nolan",
+        "synopsis": "A group of astronauts travels through a wormhole in search of a new home for humanity."
+    },
+    {
+        "title": "Arrival",
+        "director": "Denis Villeneuve",
+        "synopsis": "A linguist is recruited by the military to assist in translating alien communications after extraterrestrial spacecraft land on Earth."
+    }
+]
