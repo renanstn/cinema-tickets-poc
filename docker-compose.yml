@@ -41,7 +41,7 @@ services:
       - ADMIN_PASSWORD=admin
       - DATABASE_URL=postgres://postgres:postgres@database:5432/postgres
       - SECRET_KEY=secret!!!
-      - CELERY_URL=pyamqp://guest@broker//
+      - CELERY_BROKER_URL=pyamqp://guest@broker//
 
   worker:
     container_name: worker
@@ -58,7 +58,7 @@ services:
       - ADMIN_PASSWORD=admin
       - DATABASE_URL=postgres://postgres:postgres@database:5432/postgres
       - SECRET_KEY=secret!!!
-      - CELERY_URL=pyamqp://guest@broker//
+      - CELERY_BROKER_URL=pyamqp://guest@broker//
       - MOVIES_API_URL=http://movies_api:8000/movies
 
   scheduler:
@@ -76,7 +76,7 @@ services:
       - ADMIN_PASSWORD=admin
       - DATABASE_URL=postgres://postgres:postgres@database:5432/postgres
       - SECRET_KEY=secret!!!
-      - CELERY_URL=pyamqp://guest@broker//
+      - CELERY_BROKER_URL=pyamqp://guest@broker//
 
   movies_api:
     container_name: movies_api
