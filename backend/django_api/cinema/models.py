@@ -22,7 +22,9 @@ class Room(BaseModel):
 
 
 class Movie(BaseModel):
-    name = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, unique=True)
+    director = models.CharField(max_length=255)
+    synopsis = models.TextField()
 
     def __str__(self) -> str:
-        return self.name
+        return self.title
