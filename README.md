@@ -8,7 +8,19 @@
 [![Insomnia](https://img.shields.io/badge/Insomnia-black?style=flat&logo=insomnia&logoColor=5849BE)](https://insomnia.rest/)
 
 
-## Structure
+## Objective
+
+This lab tries to implement a solution for a cinema tickets backend.
+
+I used for study some concepts:
+
+- Django / Django REST
+- Celery (tasks and scheduler)
+- Broker (RabbitMQ)
+- Microservices
+
+
+## File structure
 
 This repo represents a microservice architecture, and has the following
 structure:
@@ -21,13 +33,14 @@ structure:
     └── tools - Tool dumps, such as Insomnia.
 ```
 
-## Objective
+## Services
 
-This lab tries to implement a solution for a cinema tickets backend.
+This repo contains a `docker-compose` file centralizing all services:
 
-I used for study some concepts:
-
-- Django / Django REST
-- Celery
-- Broker (RabbitMQ)
-- Microservices
+- `database`: A PostgreSQL database;
+- `broker`: A RabbitMQ instance;
+- `nginx`: A Nginx instance;
+- `api`: Contains a Django API built with `Django REST Framework`;
+- `worker`: Contains a worker to process celery tasks on background;
+- `scheduler`: Setup the schedule service to start periodic tasks on celery;
+- `movies_api`: External service to get movie data from an external API.
