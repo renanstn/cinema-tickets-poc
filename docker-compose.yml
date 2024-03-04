@@ -9,6 +9,8 @@ services:
     container_name: broker
     build:
       context: ./infra/broker
+    ports:
+      - "5672:5672"
 
   nginx:
     container_name: nginx
@@ -39,3 +41,51 @@ services:
       - ADMIN_PASSWORD=admin
       - DATABASE_URL=postgres://postgres:postgres@database:5432/postgres
       - SECRET_KEY=secret!!!
+      - CELERY_URL=pyamqp://guest@broker//
+
+  worker:
+    container_name: worker
+    build:
+      context: ./backend/django_api
+      target: worker
+    depends_on:
+      - broker
+    volumes:
+      - ./backend/django_api:/app/
+    environment:
+      - DEBUG=True
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin
+      - DATABASE_URL=postgres://postgres:postgres@database:5432/postgres
+      - SECRET_KEY=secret!!!
+      - CELERY_URL=pyamqp://guest@broker//
+      - MOVIES_API_URL=http://movies_api:8000/movies
+
+  scheduler:
+    container_name: scheduler
+    build:
+      context: ./backend/django_api
+      target: scheduler
+    depends_on:
+      - broker
+    volumes:
+      - ./backend/django_api:/app/
+    environment:
+      - DEBUG=True
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin
+      - DATABASE_URL=postgres://postgres:postgres@database:5432/postgres
+      - SECRET_KEY=secret!!!
+      - CELERY_URL=pyamqp://guest@broker//
+
+  movies_api:
+    container_name: movies_api
+    build:
+      context: ./backend/movies_api
+      target: development
+    volumes:
+      - ./backend/movies_api:/app/
+    ports:
+      - "8001:8000"
+    environment:
+      - RESPONSE_DELAY=1

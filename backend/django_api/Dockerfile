@@ -31,3 +31,19 @@ COPY . /app/
 RUN chmod +x /app/scripts/*.sh
 ENTRYPOINT [ "scripts/entrypoint.sh" ]
 CMD [ "scripts/start.sh", "production" ]
+
+# =============================================================================
+# Worker
+# =============================================================================
+FROM base AS worker
+RUN poetry config virtualenvs.create false && \
+    poetry install --no-dev --no-interaction --no-ansi
+CMD ["celery", "-A", "core", "worker", "--loglevel=INFO"]
+
+# =============================================================================
+# Scheduler
+# =============================================================================
+FROM base as scheduler
+RUN poetry config virtualenvs.create false && \
+    poetry install --no-dev --no-interaction --no-ansi
+CMD ["celery", "-A", "core", "beat", "--loglevel=INFO"]
