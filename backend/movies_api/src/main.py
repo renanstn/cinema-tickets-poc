@@ -14,6 +14,7 @@ app = FastAPI()
 async def ping():
     return "pong!"
 
+
 @app.get("/movies")
 async def movies():
     sleep(RESPONSE_DELAY)
