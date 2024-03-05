@@ -6,7 +6,7 @@ from cinema import models
 class RoomSerializer(BaseSerializer):
     class Meta:
         model = models.Room
-        fields = ["id", "number", "capacity"]
+        fields = ["id", "number"]
 
 
 class CinemaSerializer(BaseSerializer):
