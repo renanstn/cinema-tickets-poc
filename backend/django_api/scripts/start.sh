@@ -9,6 +9,7 @@ ENVIRONMENT=$1
 
 if [ "$ENVIRONMENT" = "development" ]; then
     echo "Running app on development mode"
+    python manage.py loaddata test
     python manage.py runserver 0.0.0.0:8000
 
 elif [ "$ENVIRONMENT" = "production" ]; then
