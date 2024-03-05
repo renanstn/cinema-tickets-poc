@@ -6,7 +6,7 @@ from celery import Celery, shared_task
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_api.settings")
 
 celery_app = Celery("core")
-celery_app.config_from_object('django.conf:settings', namespace='CELERY')
+celery_app.config_from_object("django.conf:settings", namespace="CELERY")
 celery_app.autodiscover_tasks()
 
 
@@ -21,6 +21,7 @@ def setup_periodic_tasks(sender, **kwargs):
     sender.add_periodic_task(5, ping.s(), name="ping_core")
     sender.add_periodic_task(30, sync_movies.s(), name="sync_movies")
     sender.add_periodic_task(10, ping_cinema.s(), name="ping_cinema_app")
+
 
 @shared_task
 def ping():
