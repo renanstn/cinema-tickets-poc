@@ -12,16 +12,16 @@ services:
     ports:
       - "5672:5672"
 
-  nginx:
-    container_name: nginx
-    build:
-      context: ./infra/nginx
-    volumes:
-      - ./infra/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-      # Mapear a pasta dos arquivos static para que o nginx possa servi-los
-      - ./backend/django_api/static:/static
-    ports:
-      - "80:80"
+  # nginx:
+  #   container_name: nginx
+  #   build:
+  #     context: ./infra/nginx
+  #   volumes:
+  #     - ./infra/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+  #     # Mapear a pasta dos arquivos static para que o nginx possa servi-los
+  #     - ./backend/django_api/static:/static
+  #   ports:
+  #     - "80:80"
 
   api:
     container_name: api
