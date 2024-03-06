@@ -1,4 +1,5 @@
 from django.db import models
+
 from core.models import BaseModel
 from core import utils
 
@@ -36,6 +37,8 @@ class Room(BaseModel):
     def generate_chairs(self):
         """
         Generates room chairs according to room layout.
+        Each row has a letter;
+        Each column has a number.
         """
         chairs = []
         letters = utils.alphabet_letters_generator()
