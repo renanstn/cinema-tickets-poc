@@ -1,5 +1,3 @@
-from rest_framework import serializers
-
 from core.api.serializers import BaseSerializer
 from cinema import models
 
