@@ -23,6 +23,10 @@ class RoomViewSet(viewsets.ModelViewSet):
 
 
 class RoomsList(generics.ListAPIView):
+    """
+    Allows to list cinema rooms filtered by cinema.
+    """
+
     serializer_class = serializers.RoomSerializer
 
     def get_queryset(self):
