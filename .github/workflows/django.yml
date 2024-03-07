@@ -30,4 +30,5 @@ jobs:
         poetry install --no-interaction --no-ansi
     - name: Run Tests
       run: |
+        cd backend/django_api
         python manage.py test
