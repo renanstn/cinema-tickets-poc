@@ -10,6 +10,7 @@ celery_app.config_from_object("django.conf:settings", namespace="CELERY")
 celery_app.autodiscover_tasks()
 
 
+# Schedule periodic tasks -----------------------------------------------------
 from cinema.tasks import ping_cinema, sync_movies
 
 
