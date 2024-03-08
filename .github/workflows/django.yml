@@ -49,4 +49,4 @@ jobs:
         cd backend/django_api
         python manage.py test
       env:
-        DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
