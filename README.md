@@ -7,6 +7,7 @@
 [![GitHub Actions](https://img.shields.io/badge/githubactions-%232671E5.svg?style=flat&logo=githubactions&logoColor=white)](https://github.com/features/actions)
 [![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=flat&logo=nginx&logoColor=white)](https://www.nginx.com/)
 [![Insomnia](https://img.shields.io/badge/Insomnia-black?style=flat&logo=insomnia&logoColor=5849BE)](https://insomnia.rest/)
+[![Django CI](https://github.com/renanstn/cinema-tickets-poc/actions/workflows/django.yml/badge.svg)](https://github.com/renanstn/cinema-tickets-poc/actions/workflows/django.yml)
 
 
 ## Objective
@@ -19,6 +20,7 @@ I used for study some concepts:
 - Celery (tasks and scheduler)
 - Broker (RabbitMQ)
 - Microservices
+- Github actions automated tests with postgres
 
 
 ## File structure
