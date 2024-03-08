@@ -48,3 +48,37 @@ class CinemaTests(APITestCase):
                 },
             ],
         )
+
+    def test_generate_chairs(self):
+        """
+        It must be possible to generate chairs according to room layout.
+        """
+        # GIVEN ---------------------------------------------------------------
+        cinema = models.Cinema.objects.create(
+            name="cinema 01", address="addr test 01"
+        )
+        room = models.Room.objects.create(
+            cinema=cinema, number=1, layout={"cols": 5, "rows": 2}
+        )
+        # WHEN ----------------------------------------------------------------
+        url = reverse("rooms-generate-chairs", kwargs={"pk": str(room.id)})
+        self.client.post(url)
+        # THEN ----------------------------------------------------------------
+        chairs = models.Chair.objects.all()
+        self.assertEquals(chairs.count(), 10)
+        chairs_codes = chairs.values_list("code", flat=True)
+        self.assertEquals(
+            list(chairs_codes),
+            [
+                "A01",
+                "A02",
+                "A03",
+                "A04",
+                "A05",
+                "B01",
+                "B02",
+                "B03",
+                "B04",
+                "B05",
+            ],
+        )

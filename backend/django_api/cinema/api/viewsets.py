@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, generics
+from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from cinema import models, tasks
@@ -20,6 +21,12 @@ class CinemaViewSet(viewsets.ModelViewSet):
 class RoomViewSet(viewsets.ModelViewSet):
     queryset = models.Room.objects.all()
     serializer_class = serializers.RoomSerializer
+
+    @action(detail=True, methods=["post"])
+    def generate_chairs(self, request, pk=None):
+        room = self.get_object()
+        room.generate_chairs()
+        return Response({"message": "Chairs generated!"})
 
 
 class RoomsList(generics.ListAPIView):
