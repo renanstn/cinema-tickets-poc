@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from rest_framework import status
 from rest_framework.test import APITestCase
 from django.urls import reverse
 
@@ -82,3 +83,45 @@ class CinemaTests(APITestCase):
                 "B05",
             ],
         )
+
+    def test_reserve_chair(self):
+        """
+        It must be possible to reserve a chair through the /reserve endpoint
+        """
+        # GIVEN ---------------------------------------------------------------
+        cinema = models.Cinema.objects.create(
+            name="cinema 01", address="addr test 01"
+        )
+        room = models.Room.objects.create(
+            cinema=cinema, number=1, layout={"cols": 5, "rows": 2}
+        )
+        chair = models.Chair.objects.create(code="A01", room=room)
+        # WHEN ----------------------------------------------------------------
+        url = reverse("chairs-reserve", kwargs={"pk": chair.id})
+        response = self.client.put(url)
+        # THEN ----------------------------------------------------------------
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        chair.refresh_from_db()
+        self.assertEquals(chair.status, models.Chair.RESERVED)
+
+    def test_free_chair(self):
+        """
+        It must be possible to free a chair through the /free endpoint
+        """
+        # GIVEN ---------------------------------------------------------------
+        cinema = models.Cinema.objects.create(
+            name="cinema 01", address="addr test 01"
+        )
+        room = models.Room.objects.create(
+            cinema=cinema, number=1, layout={"cols": 5, "rows": 2}
+        )
+        chair = models.Chair.objects.create(
+            code="A01", room=room, status=models.Chair.RESERVED
+        )
+        # WHEN ----------------------------------------------------------------
+        url = reverse("chairs-free", kwargs={"pk": chair.id})
+        response = self.client.put(url)
+        # THEN ----------------------------------------------------------------
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        chair.refresh_from_db()
+        self.assertEquals(chair.status, models.Chair.AVAILABLE)

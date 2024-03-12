@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, mixins
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -39,3 +39,22 @@ class RoomsList(generics.ListAPIView):
     def get_queryset(self):
         cinema = get_object_or_404(models.Cinema, id=self.kwargs["cinema_id"])
         return cinema.rooms.all().order_by("number")
+
+
+class ChairViewSet(
+    mixins.ListModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet
+):
+    queryset = models.Chair.objects.all()
+    serializer_class = serializers.ChairSerializer
+
+    @action(detail=True, methods=["PUT"])
+    def reserve(self, request, pk=None):
+        chair = self.get_object()
+        chair.reserve()
+        return Response({"message": "chair reserved"})
+
+    @action(detail=True, methods=["PUT"])
+    def free(self, request, pk=None):
+        chair = self.get_object()
+        chair.free()
+        return Response({"message": "chair available"})

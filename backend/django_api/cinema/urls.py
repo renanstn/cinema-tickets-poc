@@ -6,9 +6,10 @@ from cinema.api import viewsets
 
 router = routers.DefaultRouter()
 
+router.register(r"ping", viewsets.PingCinemaViewSet, basename="ping")
 router.register(r"cinemas", viewsets.CinemaViewSet, basename="cinemas")
 router.register(r"rooms", viewsets.RoomViewSet, basename="rooms")
-router.register(r"ping", viewsets.PingCinemaViewSet, basename="ping")
+router.register(r"chairs", viewsets.ChairViewSet, basename="chairs")
 
 urlpatterns = [
     path("", include(router.urls)),

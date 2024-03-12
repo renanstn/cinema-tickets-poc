@@ -20,3 +20,9 @@ class CinemaSerializer(BaseSerializer):
     class Meta:
         model = models.Cinema
         fields = ["id", "name", "address"]
+
+
+class ChairSerializer(BaseSerializer):
+    class Meta:
+        model = models.Chair
+        fields = ["id", "code", "status", "active"]

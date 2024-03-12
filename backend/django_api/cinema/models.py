@@ -77,3 +77,11 @@ class Chair(BaseModel):
 
     def __str__(self) -> str:
         return f"{self.room} - {self.code}"
+
+    def reserve(self):
+        self.status = Chair.RESERVED
+        self.save()
+
+    def free(self):
+        self.status = Chair.AVAILABLE
+        self.save()
