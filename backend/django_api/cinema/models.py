@@ -29,7 +29,6 @@ class Room(BaseModel):
     movie = models.ForeignKey(
         "Movie", on_delete=models.CASCADE, blank=True, null=True
     )
-    layout = models.JSONField(default=utils.default_room_layout)
 
     def __str__(self) -> str:
         return f"{self.cinema.name} - {self.number}"
@@ -42,16 +41,14 @@ class Room(BaseModel):
         """
         chairs = []
         letters = utils.alphabet_letters_generator()
-        for _ in range(1, self.layout["rows"] + 1):
+        for _ in range(1, 11):
             letter = next(letters)
-            for col in range(1, self.layout["cols"] + 1):
-                number = str(col).zfill(2)
-                chairs.append(
-                    Chair(
-                        code=f"{letter}{number}".upper(),
-                        room=self,
-                    )
+            chairs.append(
+                Chair(
+                    code=f"{letter}01".upper(),
+                    room=self,
                 )
+            )
         Chair.objects.bulk_create(chairs)
 
 
