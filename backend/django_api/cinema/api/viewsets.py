@@ -41,20 +41,14 @@ class RoomsList(generics.ListAPIView):
         return cinema.rooms.all().order_by("number")
 
 
-class ChairViewSet(
-    mixins.ListModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet
-):
-    queryset = models.Chair.objects.all()
+class CharsList(generics.ListAPIView):
+    """
+    Allows to list room chairs filtered by cinema and room.
+    """
+
     serializer_class = serializers.ChairSerializer
 
-    @action(detail=True, methods=["PUT"])
-    def reserve(self, request, pk=None):
-        chair = self.get_object()
-        chair.reserve()
-        return Response({"message": "chair reserved"})
-
-    @action(detail=True, methods=["PUT"])
-    def free(self, request, pk=None):
-        chair = self.get_object()
-        chair.free()
-        return Response({"message": "chair available"})
+    def get_queryset(self):
+        cinema = get_object_or_404(models.Cinema, id=self.kwargs["cinema_id"])
+        room = cinema.rooms.get(id=self.kwargs["room_id"])
+        return room.chairs.all().order_by("code")

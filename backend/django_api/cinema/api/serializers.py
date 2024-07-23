@@ -8,6 +8,12 @@ class MovieSerializer(BaseSerializer):
         fields = ["id", "title", "director", "synopsis"]
 
 
+class ChairSerializer(BaseSerializer):
+    class Meta:
+        model = models.Chair
+        fields = ["id", "code", "status", "active"]
+
+
 class RoomSerializer(BaseSerializer):
     movie = MovieSerializer()
 
@@ -17,12 +23,8 @@ class RoomSerializer(BaseSerializer):
 
 
 class CinemaSerializer(BaseSerializer):
+    rooms = RoomSerializer(many=True)
+
     class Meta:
         model = models.Cinema
-        fields = ["id", "name", "address"]
-
-
-class ChairSerializer(BaseSerializer):
-    class Meta:
-        model = models.Chair
-        fields = ["id", "code", "status", "active"]
+        fields = ["id", "name", "address", "rooms"]
