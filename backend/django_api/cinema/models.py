@@ -63,7 +63,9 @@ class Chair(BaseModel):
     )
 
     code = models.CharField(max_length=3)
-    room = models.ForeignKey("Room", on_delete=models.CASCADE)
+    room = models.ForeignKey(
+        "Room", on_delete=models.CASCADE, related_name="chairs"
+    )
     status = models.CharField(
         max_length=255, choices=STATUS, default=AVAILABLE
     )
