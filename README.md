@@ -49,3 +49,11 @@ This repo contains a `docker-compose` file centralizing all services:
 - `worker`: Contains a worker to process celery tasks on background;
 - `scheduler`: Setup the schedule service to start periodic tasks on celery;
 - `movies_api`: External service to get movie data from an external API.
+
+## URLs
+
+- http://localhost:8000/admin/
+- http://localhost:8000/api/
+- http://localhost:8000/api/cinema/
+- http://localhost:8001/ping
+- http://localhost:8001/movies
