@@ -18,7 +18,7 @@ urlpatterns = [
         name="list_rooms",
     ),
     path(
-        "cinemas/<uuid:cinema_id>/room/<uuid:room_id>/chairs",
+        "cinemas/<uuid:cinema_id>/rooms/<uuid:room_id>/chairs",
         viewsets.CharsList.as_view(),
         name="list_chairs",
     ),
