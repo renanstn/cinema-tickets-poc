@@ -1,19 +1,16 @@
 services:
 
   database:
-    container_name: database
     build:
       context: ./infra/postgres
 
   broker:
-    container_name: broker
     build:
       context: ./infra/broker
     ports:
       - "5672:5672"
 
   # nginx:
-  #   container_name: nginx
   #   build:
   #     context: ./infra/nginx
   #   volumes:
@@ -24,7 +21,6 @@ services:
   #     - "80:80"
 
   api:
-    container_name: api
     build:
       context: ./backend/django_api
       target: development
@@ -44,7 +40,6 @@ services:
       - CELERY_BROKER_URL=pyamqp://guest@broker//
 
   worker:
-    container_name: worker
     build:
       context: ./backend/django_api
       target: worker
@@ -62,7 +57,6 @@ services:
       - MOVIES_API_URL=http://movies_api:8000/movies
 
   scheduler:
-    container_name: scheduler
     build:
       context: ./backend/django_api
       target: scheduler
@@ -79,7 +73,6 @@ services:
       - CELERY_BROKER_URL=pyamqp://guest@broker//
 
   movies_api:
-    container_name: movies_api
     build:
       context: ./backend/movies_api
       target: development
