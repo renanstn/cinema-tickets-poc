@@ -10,14 +10,8 @@ class CinemaAdmin(BaseAdmin):
 
 @admin.register(models.Room)
 class RoomAdmin(BaseAdmin):
-    actions = ["generate_chairs_action"]
     list_display = ("number", "cinema")
     list_filter = ("cinema",)
-
-    def generate_chairs_action(self, request, queryset):
-        for room in queryset:
-            room.generate_chairs()
-        self.message_user(request, "Chairs generated successfully.")
 
 
 @admin.register(models.Movie)

@@ -22,12 +22,6 @@ class RoomViewSet(viewsets.ModelViewSet):
     queryset = models.Room.objects.all()
     serializer_class = serializers.RoomSerializer
 
-    @action(detail=True, methods=["post"])
-    def generate_chairs(self, request, pk=None):
-        room = self.get_object()
-        room.generate_chairs()
-        return Response({"message": "Chairs generated!"})
-
 
 class RoomsList(generics.ListAPIView):
     """

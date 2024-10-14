@@ -33,24 +33,6 @@ class Room(BaseModel):
     def __str__(self) -> str:
         return f"{self.cinema.name} - {self.number}"
 
-    def generate_chairs(self):
-        """
-        Generates room chairs according to room layout.
-        Each row has a letter;
-        Each column has a number.
-        """
-        chairs = []
-        letters = utils.alphabet_letters_generator()
-        for _ in range(1, 11):
-            letter = next(letters)
-            chairs.append(
-                Chair(
-                    code=f"{letter}01".upper(),
-                    room=self,
-                )
-            )
-        Chair.objects.bulk_create(chairs)
-
 
 class Chair(BaseModel):
     AVAILABLE = "available"
