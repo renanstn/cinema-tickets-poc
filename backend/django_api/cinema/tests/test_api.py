@@ -50,40 +50,6 @@ class CinemaTests(APITestCase):
             ],
         )
 
-    def test_generate_chairs(self):
-        """
-        It must be possible to generate chairs according to room layout.
-        """
-        # GIVEN ---------------------------------------------------------------
-        cinema = models.Cinema.objects.create(
-            name="cinema 01", address="addr test 01"
-        )
-        room = models.Room.objects.create(
-            cinema=cinema, number=1, layout={"cols": 5, "rows": 2}
-        )
-        # WHEN ----------------------------------------------------------------
-        url = reverse("rooms-generate-chairs", kwargs={"pk": str(room.id)})
-        self.client.post(url)
-        # THEN ----------------------------------------------------------------
-        chairs = models.Chair.objects.all()
-        self.assertEquals(chairs.count(), 10)
-        chairs_codes = chairs.values_list("code", flat=True)
-        self.assertEquals(
-            list(chairs_codes),
-            [
-                "A01",
-                "A02",
-                "A03",
-                "A04",
-                "A05",
-                "B01",
-                "B02",
-                "B03",
-                "B04",
-                "B05",
-            ],
-        )
-
     def test_reserve_chair(self):
         """
         It must be possible to reserve a chair through the /reserve endpoint
@@ -92,13 +58,11 @@ class CinemaTests(APITestCase):
         cinema = models.Cinema.objects.create(
             name="cinema 01", address="addr test 01"
         )
-        room = models.Room.objects.create(
-            cinema=cinema, number=1, layout={"cols": 5, "rows": 2}
-        )
+        room = models.Room.objects.create(cinema=cinema, number=1)
         chair = models.Chair.objects.create(code="A01", room=room)
         # WHEN ----------------------------------------------------------------
-        url = reverse("chairs-reserve", kwargs={"pk": chair.id})
-        response = self.client.put(url)
+        url = reverse("chairs-reserve-chair", kwargs={"pk": chair.id})
+        response = self.client.post(url)
         # THEN ----------------------------------------------------------------
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         chair.refresh_from_db()
@@ -112,15 +76,13 @@ class CinemaTests(APITestCase):
         cinema = models.Cinema.objects.create(
             name="cinema 01", address="addr test 01"
         )
-        room = models.Room.objects.create(
-            cinema=cinema, number=1, layout={"cols": 5, "rows": 2}
-        )
+        room = models.Room.objects.create(cinema=cinema, number=1)
         chair = models.Chair.objects.create(
             code="A01", room=room, status=models.Chair.RESERVED
         )
         # WHEN ----------------------------------------------------------------
-        url = reverse("chairs-free", kwargs={"pk": chair.id})
-        response = self.client.put(url)
+        url = reverse("chairs-free-chair", kwargs={"pk": chair.id})
+        response = self.client.post(url)
         # THEN ----------------------------------------------------------------
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         chair.refresh_from_db()

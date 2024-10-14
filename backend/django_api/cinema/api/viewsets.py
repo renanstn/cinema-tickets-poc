@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, generics, mixins
+from rest_framework import viewsets, generics, mixins, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -52,3 +52,24 @@ class CharsList(generics.ListAPIView):
         cinema = get_object_or_404(models.Cinema, id=self.kwargs["cinema_id"])
         room = cinema.rooms.get(id=self.kwargs["room_id"])
         return room.chairs.all().order_by("code")
+
+
+class CharViewSet(viewsets.ViewSet):
+    @action(detail=True, methods=["POST"])
+    def reserve_chair(self, request, pk=None):
+        chair = get_object_or_404(models.Chair, id=pk)
+        if chair.status != models.Chair.AVAILABLE:
+            return Response(
+                {"error": "Chair is already reserved"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        chair.status = models.Chair.RESERVED
+        chair.save()
+        return Response({"message": f"Chair {chair.code} reserved"})
+
+    @action(detail=True, methods=["POST"])
+    def free_chair(self, request, pk=None):
+        chair = get_object_or_404(models.Chair, id=pk)
+        chair.status = models.Chair.AVAILABLE
+        chair.save()
+        return Response({"message": f"Chair {chair.code} is available"})
