@@ -8,9 +8,7 @@
 [![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=flat&logo=nginx&logoColor=white)](https://www.nginx.com/)
 [![Insomnia](https://img.shields.io/badge/Insomnia-black?style=flat&logo=insomnia&logoColor=5849BE)](https://insomnia.rest/)
 
-
 [![Django CI](https://github.com/renanstn/cinema-tickets-poc/actions/workflows/django.yml/badge.svg)](https://github.com/renanstn/cinema-tickets-poc/actions/workflows/django.yml)
-
 
 ## Objective
 
@@ -23,7 +21,6 @@ I used for study some concepts:
 - Broker (RabbitMQ)
 - Microservices
 - Github actions automated tests with postgres
-
 
 ## File structure
 
@@ -52,8 +49,7 @@ This repo contains a `docker-compose` file centralizing all services:
 
 ## URLs
 
-- http://localhost:8000/admin/
-- http://localhost:8000/api/
-- http://localhost:8000/api/cinema/
-- http://localhost:8001/ping
-- http://localhost:8001/movies
+- Django admin: http://localhost:8000/admin
+- Django REST API:
+  - http://localhost:8000/api/
+  - http://localhost:8000/api/cinema/
