@@ -8,5 +8,5 @@
 LOOKUP_PATH="/home/renan/GitHub/cinema-tickets-poc"
 
 while inotifywait -r -e modify --exclude '\.git|\.md|\.sh' $LOOKUP_PATH; do
-    docker-compose run --rm api python manage.py test;
+    docker compose run --rm api python manage.py test;
 done

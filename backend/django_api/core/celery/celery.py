@@ -20,7 +20,7 @@ def setup_periodic_tasks(sender, **kwargs):
     Add all app tasks to the scheduler.
     """
     sender.add_periodic_task(5, ping.s(), name="ping_core")
-    sender.add_periodic_task(30, sync_movies.s(), name="sync_movies")
+    # sender.add_periodic_task(30, sync_movies.s(), name="sync_movies")
     sender.add_periodic_task(10, ping_cinema.s(), name="ping_cinema_app")
 
 
