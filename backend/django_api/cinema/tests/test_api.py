@@ -50,6 +50,27 @@ class CinemaTests(APITestCase):
             ],
         )
 
+    def test_list_chairs(self):
+        """
+        It must be possible to list all room chairs using the URL:
+        `/api/cinema/cinemas/<cinema_id>/rooms/<room_id>/chars`
+        """
+        # GIVEN ---------------------------------------------------------------
+        cinema_01 = models.Cinema.objects.create(
+            name="cinema 01", address="addr test 01"
+        )
+        room_01 = models.Room.objects.create(cinema=cinema_01, number=1)
+        for i in range(60):
+            models.Chair.objects.create(code=i, room=room_01)
+        # WHEN ----------------------------------------------------------------
+        url = reverse(
+            "list_chairs",
+            kwargs={"cinema_id": cinema_01.id, "room_id": room_01.id},
+        )
+        response = self.client.get(url)
+        # THEN ----------------------------------------------------------------
+        self.assertEquals(60, len(response.json()))
+
     def test_reserve_chair(self):
         """
         It must be possible to reserve a chair through the /reserve endpoint
