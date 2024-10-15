@@ -50,6 +50,17 @@ This repo contains a `docker-compose` file centralizing all services:
 ## URLs
 
 - Django admin: http://localhost:8000/admin
-- Django REST API:
-  - http://localhost:8000/api/
-  - http://localhost:8000/api/cinema/
+
+## Commands
+
+Format
+
+```sh
+docker compose run --rm api make format
+```
+
+Lint
+
+```sh
+docker compose run --rm api make lint
+```
