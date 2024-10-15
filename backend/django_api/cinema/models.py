@@ -1,9 +1,9 @@
-from datetime import timedelta, datetime
+from datetime import timedelta
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 
 from core.models import BaseModel
-from core import utils
 
 
 class Cinema(BaseModel):
@@ -71,7 +71,7 @@ class Chair(BaseModel):
 
     def reserve(self):
         self.status = Chair.RESERVED
-        current_time = datetime.now()
+        current_time = timezone.now()
         time_limit = current_time + timedelta(
             minutes=settings.WAITLIST_TIME_LIMIT
         )
@@ -81,3 +81,14 @@ class Chair(BaseModel):
     def free(self):
         self.status = Chair.AVAILABLE
         self.save()
+
+
+class Waitlist(BaseModel):
+    user_email = models.CharField(max_length=255)
+    room = models.ForeignKey(
+        Room, on_delete=models.CASCADE, related_name="waitlist"
+    )
+    join_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f"{self.room} - {self.user_email}"
