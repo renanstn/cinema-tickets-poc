@@ -57,13 +57,11 @@ class CharViewSet(viewsets.ViewSet):
                 {"error": "Chair is already reserved"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
-        chair.status = models.Chair.RESERVED
-        chair.save()
+        chair.reserve()
         return Response({"message": f"Chair {chair.code} reserved"})
 
     @action(detail=True, methods=["POST"])
     def free_chair(self, request, pk=None):
         chair = get_object_or_404(models.Chair, id=pk)
-        chair.status = models.Chair.AVAILABLE
-        chair.save()
+        chair.free()
         return Response({"message": f"Chair {chair.code} is available"})

@@ -23,3 +23,8 @@ class MovieAdmin(BaseAdmin):
 class ChairAdmin(BaseAdmin):
     list_display = ("code", "room", "status", "active")
     list_filter = ("room", "room__cinema", "active")
+    actions = ["reserve_chairs"]
+
+    def reserve_chairs(self, request, queryset):
+        for chair in queryset:
+            chair.reserve()

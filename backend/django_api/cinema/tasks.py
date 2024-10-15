@@ -27,3 +27,16 @@ def sync_movies():
                 "synopsis": movie["synopsis"],
             },
         )
+
+
+@shared_task
+def check_expired_chairs():
+    """
+    Check and free expired reserved chairs.
+    """
+    from cinema import models
+    from datetime import datetime
+
+    for chair in models.Chair.objects.filter(hold_until__lt=datetime.now()):
+        chair.free()
+        # TODO: Check wait list and mail them!

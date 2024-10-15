@@ -1,3 +1,5 @@
+from datetime import timedelta, datetime
+from django.conf import settings
 from django.db import models
 
 from core.models import BaseModel
@@ -52,6 +54,14 @@ class Chair(BaseModel):
         max_length=255, choices=STATUS, default=AVAILABLE
     )
     active = models.BooleanField(default=True)
+    hold_until = models.DateTimeField(
+        null=True,
+        blank=True,
+        help_text=(
+            "Time limit for a reservation. "
+            "After this time the chair will be available again."
+        ),
+    )
 
     class Meta:
         ordering = ["code"]
@@ -61,6 +71,11 @@ class Chair(BaseModel):
 
     def reserve(self):
         self.status = Chair.RESERVED
+        current_time = datetime.now()
+        time_limit = current_time + timedelta(
+            minutes=settings.WAITLIST_TIME_LIMIT
+        )
+        self.hold_until = time_limit
         self.save()
 
     def free(self):

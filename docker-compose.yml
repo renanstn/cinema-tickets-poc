@@ -38,6 +38,7 @@ services:
       - DATABASE_URL=postgres://postgres:postgres@database:5432/postgres
       - SECRET_KEY=secret!!!
       - CELERY_BROKER_URL=pyamqp://guest@broker//
+      - WAITLIST_TIME_LIMIT=5
 
   worker:
     build:

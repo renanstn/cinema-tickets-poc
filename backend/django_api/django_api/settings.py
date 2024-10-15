@@ -118,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/Sao_Paulo"
 
 USE_I18N = True
 
@@ -134,3 +134,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Celery settings
 CELERY_BROKER_URL = config("CELERY_BROKER_URL", default=None)
+
+# Business core settings
+WAITLIST_TIME_LIMIT = config("WAITLIST_TIME_LIMIT", cast=int, default=15)
