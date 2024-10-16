@@ -28,3 +28,9 @@ class ChairAdmin(BaseAdmin):
     def reserve_chairs(self, request, queryset):
         for chair in queryset:
             chair.reserve()
+
+
+@admin.register(models.Waitlist)
+class WaitlistAdmin(BaseAdmin):
+    list_display = ("user_email", "room", "join_time")
+    list_filter = ("room",)

@@ -28,3 +28,9 @@ class CinemaSerializer(BaseSerializer):
     class Meta:
         model = models.Cinema
         fields = ["id", "name", "address", "rooms"]
+
+
+class WaitlistSerializer(BaseSerializer):
+    class Meta:
+        model = models.Waitlist
+        fields = ["user_email", "room", "join_time"]

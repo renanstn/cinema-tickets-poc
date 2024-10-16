@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, generics, status
+from rest_framework import viewsets, generics, status, mixins
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -65,3 +65,10 @@ class CharViewSet(viewsets.ViewSet):
         chair = get_object_or_404(models.Chair, id=pk)
         chair.free()
         return Response({"message": f"Chair {chair.code} is available"})
+
+
+class WaitlistViewSet(
+    mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet
+):
+    queryset = models.Waitlist.objects.all()
+    serializer_class = serializers.WaitlistSerializer

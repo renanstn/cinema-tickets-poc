@@ -108,3 +108,21 @@ class CinemaTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         chair.refresh_from_db()
         self.assertEquals(chair.status, models.Chair.AVAILABLE)
+
+    def test_join_waitlist(self):
+        """
+        It must be possible to join the waitlist when a room is full
+        """
+        # GIVEN ---------------------------------------------------------------
+        cinema = models.Cinema.objects.create(
+            name="cinema 01", address="addr test 01"
+        )
+        room = models.Room.objects.create(cinema=cinema, number=1)
+        chair = models.Chair.objects.create(
+            code="A01", room=room, status=models.Chair.RESERVED
+        )
+        # WHEN ----------------------------------------------------------------
+        url = reverse("waitlist")
+        response = self.client.post(url)
+        # THEN ----------------------------------------------------------------
+        assert False

@@ -10,6 +10,7 @@ router.register(r"ping", viewsets.PingCinemaViewSet, basename="ping")
 router.register(r"cinemas", viewsets.CinemaViewSet, basename="cinemas")
 router.register(r"rooms", viewsets.RoomViewSet, basename="rooms")
 router.register(r"chairs", viewsets.CharViewSet, basename="chairs")
+router.register(r"waitlists", viewsets.WaitlistViewSet, basename="waitlists")
 
 urlpatterns = [
     path("", include(router.urls)),
