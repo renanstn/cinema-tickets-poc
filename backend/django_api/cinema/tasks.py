@@ -40,3 +40,22 @@ def check_expired_chairs():
     for chair in models.Chair.objects.filter(hold_until__lt=datetime.now()):
         chair.free()
         # TODO: Check wait list and mail them!
+
+
+@shared_task
+def check_waitlist():
+    """
+    If a chair is available, and if we have a waitlist, send an email to user
+    and reserve the chair.
+    """
+    from cinema import models
+
+    waitlist = models.Waitlist.objects.all().order_by("join_time")
+    for i in waitlist:
+        if i.room.has_free_chairs():
+            # TODO: Sent email
+            available_chair = i.room.chairs.filter(
+                status=models.Chair.AVAILABLE, active=True
+            ).first()
+            available_chair.reserve()
+            i.delete()

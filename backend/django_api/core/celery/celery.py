@@ -11,7 +11,12 @@ celery_app.autodiscover_tasks()
 
 
 # Schedule periodic tasks -----------------------------------------------------
-from cinema.tasks import ping_cinema, sync_movies, check_expired_chairs
+from cinema.tasks import (
+    ping_cinema,
+    sync_movies,
+    check_expired_chairs,
+    check_waitlist,
+)
 
 
 @celery_app.on_after_configure.connect
@@ -25,6 +30,7 @@ def setup_periodic_tasks(sender, **kwargs):
     sender.add_periodic_task(
         30, check_expired_chairs.s(), name="check_expired_chairs"
     )
+    sender.add_periodic_task(10, check_waitlist.s(), name="check_waitlist")
 
 
 @shared_task

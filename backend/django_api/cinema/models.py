@@ -35,6 +35,10 @@ class Room(BaseModel):
     def __str__(self) -> str:
         return f"{self.cinema.name} - {self.number}"
 
+    @classmethod
+    def has_free_chairs(cls) -> bool:
+        return cls.objects.filter(chairs__status=Chair.AVAILABLE).exists()
+
 
 class Chair(BaseModel):
     AVAILABLE = "available"
