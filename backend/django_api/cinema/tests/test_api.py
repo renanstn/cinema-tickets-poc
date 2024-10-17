@@ -123,6 +123,8 @@ class CinemaTests(APITestCase):
         )
         # WHEN ----------------------------------------------------------------
         url = reverse("waitlists-list")
-        response = self.client.post(url, {"user_email": "test@test.com", "room": room.id})
+        response = self.client.post(
+            url, {"user_email": "test@test.com", "room": room.id}
+        )
         # THEN ----------------------------------------------------------------
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
