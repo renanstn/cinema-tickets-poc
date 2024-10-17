@@ -33,4 +33,4 @@ class CinemaSerializer(BaseSerializer):
 class WaitlistSerializer(BaseSerializer):
     class Meta:
         model = models.Waitlist
-        fields = ["user_email", "room", "join_time"]
+        fields = ["user_email", "room"]
