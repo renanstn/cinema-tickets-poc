@@ -6,7 +6,6 @@
 [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 [![GitHub Actions](https://img.shields.io/badge/githubactions-%232671E5.svg?style=flat&logo=githubactions&logoColor=white)](https://github.com/features/actions)
 [![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=flat&logo=nginx&logoColor=white)](https://www.nginx.com/)
-[![Insomnia](https://img.shields.io/badge/Insomnia-black?style=flat&logo=insomnia&logoColor=5849BE)](https://insomnia.rest/)
 
 [![Django CI](https://github.com/renanstn/cinema-tickets-poc/actions/workflows/django.yml/badge.svg)](https://github.com/renanstn/cinema-tickets-poc/actions/workflows/django.yml)
 
