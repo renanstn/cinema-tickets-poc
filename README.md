@@ -52,6 +52,12 @@ This repo contains a `docker-compose` file centralizing all services:
 
 ## Commands
 
+Run
+
+```sh
+docker compose up -d
+```
+
 Format
 
 ```sh
